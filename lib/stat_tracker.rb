@@ -1,8 +1,18 @@
 require 'csv'
 require 'pry'
 require './lib/team'
+require './lib/game'
+require './lib/game_by_team'
 
 class StatTracker
+    attr_reader :games, :teams, :game_teams 
+
+    def initialize
+        @games = []
+        @teams = []
+        @game_teams = []
+
+    end
     
     def self.from_csv(locations)
         # instance = self.new
@@ -16,6 +26,6 @@ class StatTracker
         binding.pry
 
 
-        # instance 
+        # instance
     end
 end 
