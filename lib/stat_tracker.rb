@@ -11,12 +11,10 @@ class StatTracker
         @games = []
         @teams = []
         @game_teams = []
-
     end
     
     def self.from_csv(locations)
-        # instance = self.new
-
+    
         teams = []
 
         CSV.foreach(locations[:teams], headers: true, header_converters: :symbol) do |row|

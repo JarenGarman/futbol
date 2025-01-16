@@ -19,9 +19,9 @@ RSpec.describe StatTracker do
         end
     end
 
-    # describe '#from_csv' do
-    #     it 'returns instance of StatTracker' do
-    #         expect(StatTracker.from_csv({ teams: './data/teams.csv' })).to be_instance_of StatTracker
-    #     end
-    # end
+    describe '#from_csv' do
+        it 'returns instance of StatTracker' do
+            expect(StatTracker.from_csv({ teams: './data/teams.csv' })).to be_instance_of StatTracker
+        end
+    end
 end

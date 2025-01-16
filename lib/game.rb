@@ -1,3 +1,4 @@
+require 'pry'
 class Game 
     attr_reader :id, :season, :away_id, :home_id, :away_goals, :home_goals 
 

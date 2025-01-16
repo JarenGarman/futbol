@@ -1,4 +1,4 @@
-
+require 'pry'
 class Team 
     attr_reader :id, :name
 
