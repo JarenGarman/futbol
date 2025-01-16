@@ -23,11 +23,11 @@ RSpec.describe Game do
         end
 
         it 'has away goals' do
-            expect(game.away_goals).to eq('2')
+            expect(game.away_goals).to eq(2)
         end
 
         it 'has home goals' do
-            expect(game.home_goals).to eq('3')
+            expect(game.home_goals).to eq(3)
         end
 
     end

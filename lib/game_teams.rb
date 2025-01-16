@@ -8,8 +8,8 @@ class GameTeams
         @hoa = hoa
         @result = result 
         @coach = head_coach
-        @goals = goals
-        @shots = shots
-        @tackles = tackles
+        @goals = goals.to_i
+        @shots = shots.to_i
+        @tackles = tackles.to_i
     end
 end

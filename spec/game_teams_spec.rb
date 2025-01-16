@@ -27,15 +27,15 @@ RSpec.describe GameTeams do
         end
 
         it 'has goals' do
-            expect(game_teams.goals).to eq('2')
+            expect(game_teams.goals).to eq(2)
         end
 
         it 'has shots' do
-            expect(game_teams.shots).to eq('8')
+            expect(game_teams.shots).to eq(8)
         end
 
         it 'has tackles' do
-            expect(game_teams.tackles).to eq('44')
+            expect(game_teams.tackles).to eq(44)
         end
     end
 end
