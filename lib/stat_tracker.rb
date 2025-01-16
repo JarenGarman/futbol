@@ -5,12 +5,14 @@ require './lib/game'
 require './lib/game_by_team'
 
 class StatTracker
-    attr_reader :games, :teams, :game_teams 
+    attr_reader :games, :teams, :game_teams, :game_stats
 
     def initialize(teams, games, game_teams)
         @games = games
         @teams = teams
         @game_teams = game_teams
+        @game_stats = GameStats.new(@games)
+        @league_stats = LeagueStats.new(@teams, @games)
     end
     
     def self.from_csv(locations)
