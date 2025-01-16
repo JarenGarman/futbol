@@ -1,5 +1,5 @@
 require 'pry'
-class GameTeams
+class GameTeam
     attr_reader :game, :team, :hoa, :result, :coach, :goals, :shots, :tackles
 
     def initialize(game_id, team_id, hoa, result, head_coach, goals, shots, tackles)

@@ -2,7 +2,7 @@ require 'csv'
 require 'pry'
 require_relative 'team'
 require_relative 'game'
-require_relative 'game_teams'
+require_relative 'game_team'
 require_relative 'game_stats'
 require_relative 'league_stats'
 require_relative 'season_stats'
@@ -42,7 +42,7 @@ class StatTracker
         game_teams = []
 
         CSV.foreach(locations[:game_teams], headers: true, header_converters: :symbol) do |row|
-            game_teams << GameTeams.new(
+            game_teams << GameTeam.new(
               row[:game_id],
               row[:team_id],
               row[:hoa],
