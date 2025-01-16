@@ -8,7 +8,7 @@ require_relative 'league_stats'
 require_relative 'season_stats'
 
 class StatTracker
-    attr_reader :games, :teams, :game_teams, :game_stats
+    attr_reader :games, :teams, :game_teams, :game_stats, :league_stats, :season_stats
 
     def initialize(teams, games, game_teams)
         @games = games
