@@ -1,3 +1,4 @@
+require 'pry'
 class GameByTeam 
     attr_reader :game, :team, :hoa, :result, :coach, :goals, :shots, :tackles
 
