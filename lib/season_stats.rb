@@ -1,5 +1,5 @@
 class SeasonStats
-    def initialize(game_by_team)
-        @game_by_team
+    def initialize(game_teams)
+        @game_teams = game_teams
     end
 end
