@@ -39,10 +39,3 @@ RSpec.describe GameTeams do
         end
     end
 end
-
-
-
-
-
-
-
