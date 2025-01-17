@@ -48,4 +48,13 @@ class GameStats
             end
         end
     end
+
+    def average_goals_per_game 
+        total_goals = 0
+        @games.each do |game|
+            total_goals += (game.home_goals + game.away_goals)
+        end
+        average_goals = total_goals / @games.count.to_f 
+        average_goals.round(2)
+    end
 end
