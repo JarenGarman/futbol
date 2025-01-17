@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 RSpec.describe Game do
-    subject(:game) { Game.new('2012030221','20122013', '3', '6', '2', '3') }
+    subject(:game) { Game.new('2012030221', '20122013', '3', '6', '2', '3') }
 
     describe '#initialize' do
         it { is_expected.to be_instance_of Game }
@@ -23,15 +23,11 @@ RSpec.describe Game do
         end
 
         it 'has away goals' do
-            expect(game.away_goals).to eq('2')
+            expect(game.away_goals).to eq(2)
         end
 
         it 'has home goals' do
-            expect(game.home_goals).to eq('3')
+            expect(game.home_goals).to eq(3)
         end
-
     end
-end  
-
-
-
+end

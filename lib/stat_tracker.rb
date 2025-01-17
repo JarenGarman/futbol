@@ -1,20 +1,25 @@
 require 'csv'
 require 'pry'
-require './lib/team'
-require './lib/game'
-require './lib/game_by_team'
+require_relative 'team'
+require_relative 'game'
+require_relative 'game_team'
+require_relative 'game_stats'
+require_relative 'league_stats'
+require_relative 'season_stats'
 
 class StatTracker
-    attr_reader :games, :teams, :game_teams 
+    attr_reader :games, :teams, :game_teams, :game_stats, :league_stats, :season_stats
 
     def initialize(teams, games, game_teams)
         @games = games
         @teams = teams
         @game_teams = game_teams
+        @game_stats = GameStats.new(games)
+        @league_stats = LeagueStats.new(teams, games)
+        @season_stats = SeasonStats.new(game_teams)
     end
-    
+
     def self.from_csv(locations)
-    
         teams = []
 
         CSV.foreach(locations[:teams], headers: true, header_converters: :symbol) do |row|
@@ -37,7 +42,7 @@ class StatTracker
         game_teams = []
 
         CSV.foreach(locations[:game_teams], headers: true, header_converters: :symbol) do |row|
-            game_teams << GameByTeam.new(
+            game_teams << GameTeam.new(
                 row[:game_id],
                 row[:team_id],
                 row[:hoa],
@@ -50,4 +55,4 @@ class StatTracker
         end
         StatTracker.new(teams, games, game_teams)
     end
-end 
+end
