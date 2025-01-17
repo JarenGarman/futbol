@@ -54,4 +54,8 @@ RSpec.describe GameStats do
     }
     expect(game_stats.count_of_games_by_season).to eq(expected)
   end
+
+    it "#average_goals_per_game" do 
+        expect(game_stats.average_goals_per_game).to eq(4.22)
+    end
 end
