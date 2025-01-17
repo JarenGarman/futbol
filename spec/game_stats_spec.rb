@@ -1,43 +1,38 @@
 require_relative 'spec_helper'
 
 RSpec.describe GameStats do
-    subject(:game_stats) do 
-        game_path = './data/games.csv'
-        team_path = './data/teams.csv'
-        game_teams_path = './data/game_teams.csv'
-    
-        locations = {
-          games: game_path,
-          teams: team_path,
-          game_teams: game_teams_path
-        }
-        StatTracker.from_csv(locations).game_stats
-
+    subject(:game_stats) do
+        StatTracker.from_csv({
+                               games: './data/games.csv',
+                               teams: './data/teams.csv',
+                               game_teams: './data/game_teams.csv'
+                             }).game_stats
     end
-    describe '#initialize' do 
+
+    describe '#initialize' do
         it { is_expected.to be_instance_of GameStats }
+
+        it 'has games' do
+            expect(game_stats.games.all?(Game)).to be true
+        end
     end
 
-    it 'has games' do 
-        expect(game_stats.games).to be_an(Array)
-
-    end
-
-    it '#highest_total_score' do 
+    describe 'statistics methods' do
+        it '#highest_total_score' do
         expect(game_stats.highest_total_score).to eq(11)
-    end
+        end
 
-    it '#lowest_total_score' do
+        it '#lowest_total_score' do
         expect(game_stats.lowest_total_score).to eq(0)
-    end
+        end
 
-    it '#percentage_home_wins' do 
+        it '#percentage_home_wins' do
         expect(game_stats.percentage_home_wins).to eq(0.44)
-    end
+        end
 
-    it '#percentage_visitor_wins' do
+        it '#percentage_visitor_wins' do
         expect(game_stats.percentage_visitor_wins).to eq(0.36)
-    end
+        end
 
     it '#percentage_tes' do 
         expect(game_stats.percentage_ties).to eq(0.20)

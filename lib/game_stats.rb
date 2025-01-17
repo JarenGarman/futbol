@@ -1,22 +1,23 @@
 require 'pry'
 class GameStats
     attr_reader :games
+
     def initialize(games)
         @games = games
     end
-   
+
     def highest_total_score
         @games.map do |game|
             game.away_goals + game.home_goals
         end.max
     end
 
-    def lowest_total_score 
+    def lowest_total_score
         @games.map do |game|
             game.away_goals + game.home_goals
         end.min
     end
-    
+
     def percentage_home_wins
         home_wins = @games.count do |game|
             game.home_goals > game.away_goals
@@ -40,11 +41,11 @@ class GameStats
 
     def count_of_games_by_season
         seasons = @games.map do |game|
-            game.season 
+            game.season
         end.uniq
         seasons.each_with_object({}) do |season, games_per_season|
             games_per_season[season] = @games.count do |game|
-                game.season == season 
+                game.season == season
             end
         end
     end
