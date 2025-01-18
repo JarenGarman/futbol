@@ -36,9 +36,19 @@ RSpec.describe LeagueStats do
             expect(league_stats.count_of_games).to eq(7441)
         end
 
+        it '#get_team_name_string' do #helper method
+            expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
+        end
+
         it '#best_offense' do
             expect(league_stats.best_offense).to eq("Reign FC")
         end
+
+        it '#worst_offense' do
+            expect(league_stats.worst_offense).to eq("Utah Royals FC")
+        end
+
+
     end
 
     

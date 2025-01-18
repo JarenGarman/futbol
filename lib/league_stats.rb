@@ -12,8 +12,14 @@ class LeagueStats
         @teams.count
     end
 
-    def count_of_games
+    def count_of_games #helper method
         @games.count
+    end
+
+    def get_team_name_string(team_id)
+        @teams.find do |team|
+            team.id == team_id
+        end.name
     end
 
     def best_offense
@@ -21,29 +27,36 @@ class LeagueStats
             game_team.team
         end.uniq
         goals_per_team = {}
-            team_ids.each do |team_id|
-                game_team_teams = @game_teams.select do |game_team|
-                    game_team.team == team_id
-                end
-                binding.pry
+        team_ids.each do |team_id|
+            game_team_teams = @game_teams.select do |game_team|
+                game_team.team == team_id
             end
-            
-        # team_total_goals = @game_teams.select do |team_id|
-        #     team_id.team == team_id
-        
-       
-                
-                # @game_teams.each do |game_team|
-                #     team_goals << game_team.goals if game_team.team == team_id
-                # end
-                # # goals_per_team[team] = team_goals
-                # binding.pry
-        
-        
+            total_goals = game_team_teams.sum do |game_team|
+                game_team.goals
+            end
+            goals_per_team[team_id] = (total_goals.to_f / game_team_teams.count).round(2)
+        end
+        max_average = goals_per_team.values.max 
+        team_id_max_avg = goals_per_team.key(max_average)
+        get_team_name_string(team_id_max_avg)
+    end
 
-        #likely need a hash with teamid as key, total goals as value
-        # 7441 total games across all szns
-        #@id="54", @name="Reign FC"
-        
+    def worst_offense
+        team_ids = @game_teams.map do |game_team| 
+            game_team.team
+        end.uniq
+        goals_per_team = {}
+        team_ids.each do |team_id|
+            game_team_teams = @game_teams.select do |game_team|
+                game_team.team == team_id
+            end
+            total_goals = game_team_teams.sum do |game_team|
+                game_team.goals
+            end
+            goals_per_team[team_id] = (total_goals.to_f / game_team_teams.count).round(2)
+        end
+        min_average = goals_per_team.values.min 
+        team_id_min_avg = goals_per_team.key(min_average)
+        get_team_name_string(team_id_min_avg)
     end
 end
