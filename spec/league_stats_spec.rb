@@ -52,8 +52,16 @@ RSpec.describe LeagueStats do
             expect(league_stats.highest_scoring_visitor).to eq("FC Dallas")
         end
 
-        xit '#highest_scoring_home_team' do
+        it '#highest_scoring_home_team' do
             expect(league_stats.highest_scoring_home_team).to eq("Reign FC")
+        end
+
+        it '#lowest_scoring_visitor' do
+            expect(league_stats.lowest_scoring_visitor).to eq("San Jose Earthquakes")
+        end
+
+        it '#lowest_scoring_home_team' do
+            expect(league_stats.lowest_scoring_home_team).to eq("Utah Royals FC")
         end
 
 
