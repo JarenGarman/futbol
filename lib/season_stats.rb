@@ -33,15 +33,15 @@ class SeasonStats
 
     def coach_games(season)
         # create a hash with coaches as keys and games they coach as values
-        coach_games = {}
+        coaches_with_games = {}
         game_teams_by_season(season).each do |game_team|
-            if coaches_game[game_team.coach]
-                coaches_game[game_team.coach] << game_team
+            if coaches_with_games[game_team.coach]
+                coaches_with_games[game_team.coach] << game_team
             else
-                coaches_game[game_team.coach] = [game_team]
+                coaches_with_games[game_team.coach] = [game_team]
             end
         end
-        coach_games
+        coaches_with_games
     end
 
     def coach_win_percents(season)
