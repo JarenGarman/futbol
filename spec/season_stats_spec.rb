@@ -15,5 +15,19 @@ RSpec.describe SeasonStats do
         it 'has game_teams' do
             expect(season_stats.game_teams.all?(GameTeam)).to be true
         end
+        
+        it 'has games' do
+            expect(season_stats.games.all?(Game)).to be true
+        end
+
+        it 'has teams' do
+            expect(season_stats.teams.all?(Team)).to be true
+        end
     end
+
+    it "#winningest_coach" do
+    expect(season_stats.winningest_coach("20132014")).to eq "Claude Julien"
+    expect(season_stats.winningest_coach("20142015")).to eq "Alain Vigneault"
+  end
+
 end
