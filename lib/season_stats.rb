@@ -9,40 +9,52 @@ class SeasonStats
     end
 
     def winningest_coach(season)
-        #games in the season 
-        #find game teams by the games id 
-        #with the game teams find the coach with the best win %
+        coach_win_percents(season).max_by do |_, average|
+            average
+        end[0]
+    end
+
+  private
+
+    def game_teams_by_season(season)
+        # games in the season
         season_games = @games.find_all do |game|
             game.season == season
         end
-        season_games_id = season_games.map do |game|
+        # convert games to game_ids
+        season_games_ids = season_games.map do |game|
             game.id
         end
-        season_game_teams = @game_teams.find_all do |game_team|
-            season_games_id.include?(game_team.game)    # (.game means game_id)
+        # find game teams by the games id
+        @game_teams.find_all do |game_team|
+            season_games_ids.include?(game_team.game) # (.game means game_id)
         end
-        #create a hash with coaches as keys and games they coach as values 
-        #transform the hash into their win % 
-        #return coach name with the highest % of wins 
-        coaches_game = {}
-        season_game_teams.each do |game_team|
+    end
+
+    def coach_games(season)
+        # create a hash with coaches as keys and games they coach as values
+        coach_games = {}
+        game_teams_by_season(season).each do |game_team|
             if coaches_game[game_team.coach]
                 coaches_game[game_team.coach] << game_team
-            else 
+            else
                 coaches_game[game_team.coach] = [game_team]
             end
         end
+        coach_games
+    end
+
+    def coach_win_percents(season)
+        # create a new hash with coaches a keys and win % as values
         coach_averages = {}
-        coaches_game.each do |coach, game_teams|
-            amount_of_games = game_teams.count 
+        coach_games(season).each do |coach, game_teams|
+            amount_of_games = game_teams.count
             amount_of_wins = game_teams.count do |game_team|
-                game_team.result == "WIN"
+                game_team.result == 'WIN'
             end
             average = amount_of_wins / amount_of_games.to_f
-            coach_averages[coach] = average 
+            coach_averages[coach] = average
         end
-        coach_averages.max_by do |_, average|
-            average
-        end[0]
+        coach_averages
     end
 end
