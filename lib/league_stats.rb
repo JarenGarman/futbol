@@ -59,4 +59,23 @@ class LeagueStats
         team_id_min_avg = goals_per_team.key(min_average)
         get_team_name_string(team_id_min_avg)
     end
+
+    def highest_scoring_visitor
+        away_ids = @games.map do |game|
+            game.away_id
+        end.uniq
+        away_goals_per_team = {}
+        away_ids.each do |away_id|
+            away_teams = @games.select do |game|
+                game.away_id == away_id
+            end
+            total_away_goals = away_teams.sum do |team|
+                team.away_goals
+            end
+            away_goals_per_team[away_id] = (total_away_goals.to_f / away_teams.count).round(2)
+        end
+        max_avg_away_goals = away_goals_per_team.values.max
+        away_team_id = away_goals_per_team.key(max_avg_away_goals)
+        get_team_name_string(away_team_id)
+    end
 end

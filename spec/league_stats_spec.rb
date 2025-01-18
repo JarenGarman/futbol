@@ -32,11 +32,11 @@ RSpec.describe LeagueStats do
             expect(league_stats.count_of_teams).to eq(32)
         end
 
-        it '#count_of_games' do #helper method
+        it '#count_of_games' do #helper method - refactor to private
             expect(league_stats.count_of_games).to eq(7441)
         end
 
-        it '#get_team_name_string' do #helper method
+        it '#get_team_name_string' do #helper method - refactor to private
             expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
         end
 
@@ -46,6 +46,14 @@ RSpec.describe LeagueStats do
 
         it '#worst_offense' do
             expect(league_stats.worst_offense).to eq("Utah Royals FC")
+        end
+
+        it '#highest_scoring_visitor' do
+            expect(league_stats.highest_scoring_visitor).to eq("FC Dallas")
+        end
+
+        xit '#highest_scoring_home_team' do
+            expect(league_stats.highest_scoring_home_team).to eq("Reign FC")
         end
 
 
