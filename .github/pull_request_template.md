@@ -2,28 +2,39 @@
 
 ## Features
 
-- Class1
-  - Does something
-- Class2
-  - Does something else
+### FirstClass
+
+- first_method
+- second_method
+
+### SecondClass
+
+- third_method
+- fourth_method
 
 ## Tests
 
-- class_1_spec
-- class_2_spec
+### first_class_spec
+
+Passing: true
+
+### second_class_spec
+
+Passing: false
 
 ## Refactors
 
-- class_1
-  - method_refactored
-    - Reason for refactoring
-  - another_method_refactored
-    - Another reason for refactoring
+### ThirdClass
+
+- fifth_method
+  - Reason for refactoring
+- sixth_method
+  - Reason for refactoring
 
 ## Chores
 
-- Brief overview. Can delete this section if no chores included
+- Brief overview
 
 ## Notes
 
-Anything else you may think is relevant for this PR. Can also be removed if empty.
+Anything else you may think is relevant for this PR. Don't forget to remove any empty sections and set the title!
