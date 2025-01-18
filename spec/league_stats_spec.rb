@@ -19,5 +19,27 @@ RSpec.describe LeagueStats do
         it 'has games' do
             expect(league_stats.games.all?(Game)).to be true
         end
+
+        it 'has game_teams' do
+            expect(league_stats.game_teams.all?(GameTeam)).to be true
+            #class of GameTeam and instance method should be named the same
+        end
     end
+
+    describe '#statistics' do
+        
+        it '#count_of_teams' do
+            expect(league_stats.count_of_teams).to eq(32)
+        end
+
+        it '#count_of_games' do #helper method
+            expect(league_stats.count_of_games).to eq(7441)
+        end
+
+        it '#best_offense' do
+            expect(league_stats.best_offense).to eq("Reign FC")
+        end
+    end
+
+    
 end
