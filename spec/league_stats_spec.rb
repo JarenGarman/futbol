@@ -2,11 +2,11 @@ require_relative 'spec_helper'
 
 RSpec.describe LeagueStats do
     subject(:league_stats) do
-      StatTracker.from_csv({
-                             games: './data/games.csv',
-                             teams: './data/teams.csv',
-                             game_teams: './data/game_teams.csv'
-                           }).league_stats
+    StatTracker.from_csv({
+                            games: './data/games.csv',
+                            teams: './data/teams.csv',
+                            game_teams: './data/game_teams.csv'
+                        }).league_stats
     end
 
     describe '#initialize' do
@@ -22,22 +22,47 @@ RSpec.describe LeagueStats do
 
         it 'has game_teams' do
             expect(league_stats.game_teams.all?(GameTeam)).to be true
-            #class of GameTeam and instance method should be named the same
         end
     end
 
-    describe '#statistics' do
+    describe 'helper methods' do
+
+        it '#get_team_name_string' do 
+            expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
+        end
+
+        it '#unique_team_id_array' do
+            expect(league_stats.unique_team_id_array).to be_an(Array)
+        end
+
+        it '#away_ids' do
+            expect(league_stats.away_ids).to be_an(Array)
+        end
+
+        it '#home_ids' do
+            expect(league_stats.home_ids).to be_an(Array)
+        end
+
+        it '#goals_per_team_hash' do
+            expect(league_stats.goals_per_team_hash).to be_a(Hash)
+            expect(league_stats.goals_per_team_hash.keys.count).to eq(32)
+        end
+
+        it '#away_goals_per_team_hash' do
+            expect(league_stats.away_goals_per_team_hash).to be_a(Hash)
+            expect(league_stats.away_goals_per_team_hash.keys.count).to eq(32)
+        end
+
+        it '#home_goals_per_team_hash' do
+            expect(league_stats.home_goals_per_team_hash).to be_a(Hash)
+            expect(league_stats.home_goals_per_team_hash.keys.count).to eq(32)
+        end
+    end
+
+    describe 'statistics methods' do
         
         it '#count_of_teams' do
             expect(league_stats.count_of_teams).to eq(32)
-        end
-
-        it '#count_of_games' do #helper method - refactor to private
-            expect(league_stats.count_of_games).to eq(7441)
-        end
-
-        it '#get_team_name_string' do #helper method - refactor to private
-            expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
         end
 
         it '#best_offense' do
@@ -63,9 +88,5 @@ RSpec.describe LeagueStats do
         it '#lowest_scoring_home_team' do
             expect(league_stats.lowest_scoring_home_team).to eq("Utah Royals FC")
         end
-
-
     end
-
-    
 end
