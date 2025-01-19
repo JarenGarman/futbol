@@ -16,4 +16,5 @@ RSpec.describe SeasonStats do
             expect(season_stats.game_teams.all?(GameTeam)).to be true
         end
     end
+
 end
