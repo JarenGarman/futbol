@@ -31,12 +31,12 @@ RSpec.describe SeasonStats do
             expect(season_stats.winningest_coach('20142015')).to eq('Alain Vigneault')
         end
 
-        it '#worst_coach', skip: 'Not implemented yet' do
+        it '#worst_coach' do
             expect(season_stats.worst_coach('20132014')).to eq('Peter Laviolette')
             expect(season_stats.worst_coach('20142015')).to eq('Craig MacTavish').or eq('Ted Nolan')
         end
 
-        it '#most_accurate_team', skip: 'Not implemented yet' do
+        it '#most_accurate_team' do
             expect(season_stats.most_accurate_team('20132014')).to eq('Real Salt Lake')
             expect(season_stats.most_accurate_team('20142015')).to eq('Toronto FC')
         end

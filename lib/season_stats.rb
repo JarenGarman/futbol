@@ -14,6 +14,16 @@ class SeasonStats
         end[0]
     end
 
+    def worst_coach(season)
+        coach_win_percents(season).min_by do |_, average|
+            average
+        end[0]
+    end
+
+    def most_accurate_team(season)
+    binding.pry
+    end
+
   private
 
     def game_teams_by_season(season)
