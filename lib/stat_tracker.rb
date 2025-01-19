@@ -15,7 +15,7 @@ class StatTracker
         @teams = teams
         @game_teams = game_teams
         @game_stats = GameStats.new(games)
-        @league_stats = LeagueStats.new(teams, games)
+        @league_stats = LeagueStats.new(teams, games, game_teams)
         @season_stats = SeasonStats.new(game_teams, teams, games)
     end
 

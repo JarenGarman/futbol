@@ -67,4 +67,6 @@ class SeasonStats
         end
         coach_averages
     end
+
+   
 end
