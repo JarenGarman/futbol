@@ -12,9 +12,9 @@ class LeagueStats
         @teams.count
     end
 
-    def count_of_games #helper method
-        @games.count
-    end
+    # def count_of_games #helper method - delete?
+    #     @games.count
+    # end
 
     def get_team_name_string(team_id)
         @teams.find do |team|
@@ -22,12 +22,27 @@ class LeagueStats
         end.name
     end
 
-    def best_offense
+    def unique_team_id_array
         team_ids = @game_teams.map do |game_team| 
             game_team.team
         end.uniq
+    end
+
+    def away_ids
+        away_ids = @games.map do |game|
+            game.away_id
+        end.uniq
+    end
+
+    def home_ids
+        home_ids = @games.map do |game|
+            game.home_id
+        end.uniq
+    end
+
+    def best_offense
         goals_per_team = {}
-        team_ids.each do |team_id|
+        unique_team_id_array.each do |team_id|
             game_team_teams = @game_teams.select do |game_team|
                 game_team.team == team_id
             end
@@ -42,11 +57,8 @@ class LeagueStats
     end
 
     def worst_offense
-        team_ids = @game_teams.map do |game_team| 
-            game_team.team
-        end.uniq
         goals_per_team = {}
-        team_ids.each do |team_id|
+        unique_team_id_array.each do |team_id|
             game_team_teams = @game_teams.select do |game_team|
                 game_team.team == team_id
             end
@@ -61,9 +73,6 @@ class LeagueStats
     end
 
     def highest_scoring_visitor
-        away_ids = @games.map do |game|
-            game.away_id
-        end.uniq
         away_goals_per_team = {}
         away_ids.each do |away_id|
             away_teams = @games.select do |game|
@@ -80,9 +89,6 @@ class LeagueStats
     end
 
     def highest_scoring_home_team
-        home_ids = @games.map do |game|
-            game.home_id
-        end.uniq
         home_goals_per_team = {}
         home_ids.each do |home_id|
             home_teams = @games.select do |game|
@@ -99,9 +105,6 @@ class LeagueStats
     end
 
     def lowest_scoring_visitor
-        away_ids = @games.map do |game|
-            game.away_id
-        end.uniq
         away_goals_per_team = {}
         away_ids.each do |away_id|
             away_teams = @games.select do |game|
@@ -118,9 +121,6 @@ class LeagueStats
     end
 
     def lowest_scoring_home_team
-        home_ids = @games.map do |game|
-            game.home_id
-        end.uniq
         home_goals_per_team = {}
         home_ids.each do |home_id|
             home_teams = @games.select do |game|

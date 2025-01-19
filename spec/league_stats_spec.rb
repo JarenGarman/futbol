@@ -32,12 +32,25 @@ RSpec.describe LeagueStats do
             expect(league_stats.count_of_teams).to eq(32)
         end
 
-        it '#count_of_games' do #helper method - refactor to private
-            expect(league_stats.count_of_games).to eq(7441)
-        end
+
+        # it '#count_of_games' do #helper method - refactor to private or delete?
+        #     expect(league_stats.count_of_games).to eq(7441)
+        # end
 
         it '#get_team_name_string' do #helper method - refactor to private
             expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
+        end
+
+        it '#unique_team_id_array' do
+            expect(league_stats.unique_team_id_array).to be_an(Array)
+        end
+
+        it '#away_ids' do
+            expect(league_stats.away_ids).to be_an(Array)
+        end
+
+        it '#home_ids' do
+            expect(league_stats.home_ids).to be_an(Array)
         end
 
         it '#best_offense' do
