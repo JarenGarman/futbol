@@ -95,7 +95,7 @@ class SeasonStats
             end
 
             shot_ratio = (team_goals.to_f / team_shots)
-            team_accuracy[team_id] = shot_ratio  
+            team_accuracy[team_id] = shot_ratio
         end
         team_accuracy
     end
