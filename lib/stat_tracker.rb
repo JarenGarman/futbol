@@ -30,12 +30,12 @@ class StatTracker
 
         CSV.foreach(locations[:games], headers: true, header_converters: :symbol) do |row|
             games << Game.new(
-                row[:game_id],
-                row[:season],
-                row[:away_team_id],
-                row[:home_team_id],
-                row[:away_goals],
-                row[:home_goals]
+              row[:game_id],
+              row[:season],
+              row[:away_team_id],
+              row[:home_team_id],
+              row[:away_goals],
+              row[:home_goals]
             )
         end
 
@@ -43,14 +43,14 @@ class StatTracker
 
         CSV.foreach(locations[:game_teams], headers: true, header_converters: :symbol) do |row|
             game_teams << GameTeam.new(
-                row[:game_id],
-                row[:team_id],
-                row[:hoa],
-                row[:result],
-                row[:head_coach],
-                row[:goals],
-                row[:shots],
-                row[:tackles]
+              row[:game_id],
+              row[:team_id],
+              row[:hoa],
+              row[:result],
+              row[:head_coach],
+              row[:goals],
+              row[:shots],
+              row[:tackles]
             )
         end
         StatTracker.new(teams, games, game_teams)
@@ -80,7 +80,7 @@ class StatTracker
         @game_stats.count_of_games_by_season
     end
 
-    def average_goals_per_game 
+    def average_goals_per_game
         @game_stats.average_goals_per_game
     end
 
