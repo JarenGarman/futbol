@@ -21,7 +21,43 @@ class SeasonStats
     end
 
     def most_accurate_team(season)
-    binding.pry
+        season_games = game_teams_by_season(season)
+        grouped_games = game_teams_by_team(season_games)
+        most_accurate_team_id = team_accuracy_hash(grouped_games).max_by do |_, shot_ratio|
+            shot_ratio
+        end[0]
+        get_team_name_string(most_accurate_team_id)
+    end
+
+    def least_accurate_team(season)
+        season_games = game_teams_by_season(season)
+        grouped_games = game_teams_by_team(season_games)
+        least_accurate_team_id = team_accuracy_hash(grouped_games).min_by do |_, shot_ratio|
+            shot_ratio
+        end[0]
+        get_team_name_string(least_accurate_team_id)
+    end
+
+    def most_tackles(season)
+        season_games = game_teams_by_season(season)
+        grouped_games = game_teams_by_team(season_games)
+        best_defense = grouped_games.max_by do |_, game_teams|
+            game_teams.sum do |game_team|
+                game_team.tackles
+            end
+        end[0]
+        get_team_name_string(best_defense)
+    end
+
+    def fewest_tackles(season)
+        season_games = game_teams_by_season(season)
+        grouped_games = game_teams_by_team(season_games)
+        worst_defense = grouped_games.min_by do |_, game_teams|
+            game_teams.sum do |game_team|
+                game_team.tackles
+            end
+        end[0]
+        get_team_name_string(worst_defense)
     end
 
   private
@@ -39,6 +75,29 @@ class SeasonStats
         @game_teams.find_all do |game_team|
             season_games_ids.include?(game_team.game) # (.game means game_id)
         end
+    end
+
+    def game_teams_by_team(game_teams)
+        game_teams.group_by do |game_team|
+            game_team.team
+        end
+    end
+
+    def team_accuracy_hash(game_teams)
+        team_accuracy = {}
+
+        game_teams.each do |team_id, game_teams|
+            team_goals = game_teams.sum do |game_team|
+                game_team.goals
+            end
+            team_shots = game_teams.sum do |game_team|
+                game_team.shots
+            end
+
+            shot_ratio = (team_goals.to_f / team_shots)
+            team_accuracy[team_id] = shot_ratio  
+        end
+        team_accuracy
     end
 
     def coach_games(season)
@@ -68,5 +127,9 @@ class SeasonStats
         coach_averages
     end
 
-   
+    def get_team_name_string(team_id)
+        @teams.find do |team|
+            team.id == team_id
+        end.name
+    end
 end

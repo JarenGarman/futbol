@@ -41,17 +41,17 @@ RSpec.describe SeasonStats do
             expect(season_stats.most_accurate_team('20142015')).to eq('Toronto FC')
         end
 
-        it '#least_accurate_team', skip: 'Not implemented yet' do
+        it '#least_accurate_team' do
             expect(season_stats.least_accurate_team('20132014')).to eq('New York City FC')
             expect(season_stats.least_accurate_team('20142015')).to eq('Columbus Crew SC')
         end
 
-        it '#most_tackles', skip: 'Not implemented yet' do
+        it '#most_tackles' do
             expect(season_stats.most_tackles('20132014')).to eq('FC Cincinnati')
             expect(season_stats.most_tackles('20142015')).to eq('Seattle Sounders FC')
         end
 
-        it '#fewest_tackles', skip: 'Not implemented yet' do
+        it '#fewest_tackles' do
             expect(season_stats.fewest_tackles('20132014')).to eq('Atlanta United')
             expect(season_stats.fewest_tackles('20142015')).to eq('Orlando City SC')
         end
