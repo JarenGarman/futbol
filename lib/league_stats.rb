@@ -15,19 +15,19 @@ class LeagueStats
     end
 
     def unique_team_id_array
-        team_ids = @game_teams.map do |game_team| 
+        @game_teams.map do |game_team|
             game_team.team
         end.uniq
     end
 
     def away_ids
-        away_ids = @games.map do |game|
+        @games.map do |game|
             game.away_id
         end.uniq
     end
 
     def home_ids
-        home_ids = @games.map do |game|
+        @games.map do |game|
             game.home_id
         end.uniq
     end
@@ -80,14 +80,14 @@ class LeagueStats
 
     def best_offense
         goals_per_team_hash
-        max_average = goals_per_team_hash.values.max 
+        max_average = goals_per_team_hash.values.max
         team_id_max_avg = goals_per_team_hash.key(max_average)
         get_team_name_string(team_id_max_avg)
     end
 
     def worst_offense
         goals_per_team_hash
-        min_average = goals_per_team_hash.values.min 
+        min_average = goals_per_team_hash.values.min
         team_id_min_avg = goals_per_team_hash.key(min_average)
         get_team_name_string(team_id_min_avg)
     end

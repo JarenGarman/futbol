@@ -3,10 +3,10 @@ require_relative 'spec_helper'
 RSpec.describe LeagueStats do
     subject(:league_stats) do
     StatTracker.from_csv({
-                            games: './data/games.csv',
-                            teams: './data/teams.csv',
-                            game_teams: './data/game_teams.csv'
-                        }).league_stats
+                           games: './data/games.csv',
+                           teams: './data/teams.csv',
+                           game_teams: './data/game_teams.csv'
+                         }).league_stats
     end
 
     describe '#initialize' do
@@ -26,9 +26,8 @@ RSpec.describe LeagueStats do
     end
 
     describe 'helper methods' do
-
-        it '#get_team_name_string' do 
-            expect(league_stats.get_team_name_string("54")).to eq("Reign FC")
+        it '#get_team_name_string' do
+            expect(league_stats.get_team_name_string('54')).to eq('Reign FC')
         end
 
         it '#unique_team_id_array' do
@@ -60,33 +59,32 @@ RSpec.describe LeagueStats do
     end
 
     describe 'statistics methods' do
-        
         it '#count_of_teams' do
             expect(league_stats.count_of_teams).to eq(32)
         end
 
         it '#best_offense' do
-            expect(league_stats.best_offense).to eq("Reign FC")
+            expect(league_stats.best_offense).to eq('Reign FC')
         end
 
         it '#worst_offense' do
-            expect(league_stats.worst_offense).to eq("Utah Royals FC")
+            expect(league_stats.worst_offense).to eq('Utah Royals FC')
         end
 
         it '#highest_scoring_visitor' do
-            expect(league_stats.highest_scoring_visitor).to eq("FC Dallas")
+            expect(league_stats.highest_scoring_visitor).to eq('FC Dallas')
         end
 
         it '#highest_scoring_home_team' do
-            expect(league_stats.highest_scoring_home_team).to eq("Reign FC")
+            expect(league_stats.highest_scoring_home_team).to eq('Reign FC')
         end
 
         it '#lowest_scoring_visitor' do
-            expect(league_stats.lowest_scoring_visitor).to eq("San Jose Earthquakes")
+            expect(league_stats.lowest_scoring_visitor).to eq('San Jose Earthquakes')
         end
 
         it '#lowest_scoring_home_team' do
-            expect(league_stats.lowest_scoring_home_team).to eq("Utah Royals FC")
+            expect(league_stats.lowest_scoring_home_team).to eq('Utah Royals FC')
         end
     end
 end

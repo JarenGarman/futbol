@@ -24,6 +24,24 @@
 
 - Create a section in your README called “Contributors”. List each group member’s name and link to their LinkedIn and Github profiles.
 
+## Iteration 3 (Retro) Deliverables
+
+### Retro Tools
+
+We used an [EasyRetro board](https://easyretro.io/publicboard/gFx8wYBqbGb1rlggSvs1czfIZNI3/8fb9b265-6c42-4695-8250-57fbcc380eb7) to conduct our retro.
+
+### Top 3 things that went well
+
+1. Communication
+2. Learning
+3. Github process
+
+### Top 3 things we are excited about for our next project
+
+1. Community-building
+2. Learning and teaching
+3. Increasing our technical abilities
+
 ## Contributors
 
 ### Beverly Green

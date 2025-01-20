@@ -83,10 +83,10 @@ class SeasonStats
         end
     end
 
-    def team_accuracy_hash(game_teams)
+    def team_accuracy_hash(game_teams_param)
         team_accuracy = {}
 
-        game_teams.each do |team_id, game_teams|
+        game_teams_param.each do |team_id, game_teams|
             team_goals = game_teams.sum do |game_team|
                 game_team.goals
             end
@@ -95,7 +95,7 @@ class SeasonStats
             end
 
             shot_ratio = (team_goals.to_f / team_shots)
-            team_accuracy[team_id] = shot_ratio  
+            team_accuracy[team_id] = shot_ratio
         end
         team_accuracy
     end
