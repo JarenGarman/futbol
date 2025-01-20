@@ -50,28 +50,28 @@ class GameStats
         end
     end
 
-    def average_goals_per_game 
+    def average_goals_per_game
         total_goals = 0
         @games.each do |game|
             total_goals += (game.home_goals + game.away_goals)
         end
-        average_goals = total_goals / @games.count.to_f 
+        average_goals = total_goals / @games.count.to_f
         average_goals.round(2)
     end
 
-    #refactor later with .each_with_object({}) do ?
+    # refactor later with .each_with_object({}) do ?
     def average_goals_by_season
         seasons = @games.map do |game|
-            game.season 
+            game.season
         end.uniq
         games_by_season = {}
-            seasons.each do |season|
-                season_games = []
-                @games.each do |game|
-                    season_games << game if game.season == season 
-                end
-                games_by_season[season] = season_games
+        seasons.each do |season|
+            season_games = []
+            @games.each do |game|
+                season_games << game if game.season == season
             end
+            games_by_season[season] = season_games
+        end
 
         avg_goals_by_season = {}
         games_by_season.each do |season, season_games|
